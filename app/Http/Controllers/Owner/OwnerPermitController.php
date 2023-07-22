@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\Teacher;
+use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerPermitController extends Controller
 {
@@ -29,7 +32,33 @@ class OwnerPermitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->input('role') == "teacher") {
+
+            $teacher = new Teacher;
+            $teacher->email = $request->input('email');
+            $teacher->lastName = $request->input('lastName');
+            $teacher->firstName = $request->input('firstName');
+            $teacher->phone = $request->input('phone');
+            $teacher->owner_id = Auth::id();
+
+            $teacher->save();
+
+            return Inertia::render('Owner/Permit/Index');
+
+        } else if($request->input('role') == "student") {
+
+            $student = new Student;
+            $student->email = $request->input('email');
+            $student->lastName = $request->input('lastName');
+            $student->firstName = $request->input('firstName');
+            $student->phone = $request->input('phone');
+            $student->owner_id = Auth::id();
+
+            $student->save();
+
+            return Inertia::render('Owner/Permit/Index');
+
+        }
     }
 
     /**
@@ -39,6 +68,7 @@ class OwnerPermitController extends Controller
     {
         if($id == 0) {
             $display = [
+                'role' => 'teacher', 
                 'inviteTitle' => '新しい講師への招待メール送信',
                 'registerTitle' => '新しい講師の新規登録',
             ];
@@ -47,6 +77,7 @@ class OwnerPermitController extends Controller
             ]);
         } else if($id == 1) {
             $display = [
+                'role' => 'student', 
                 'inviteTitle' => '新しい生徒への招待メール送信',
                 'registerTitle' => '新しい生徒の新規登録',
             ];
