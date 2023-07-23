@@ -16,7 +16,6 @@
             "dest": "/api/index.php"
         }
     ],
-    "output": "public",
     "env": {
         "APP_NAME": "Laravel Vercel",
         "APP_DEBUG": "false",
