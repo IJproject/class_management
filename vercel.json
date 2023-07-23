@@ -1,5 +1,11 @@
 {
     "version": 2,
+    "builds": [
+        {
+            "src": "/public/**",
+            "use": "vercel-php@0.5.2"
+        }
+    ],
     "routes": [
         {
             "src": "/(.*)",
