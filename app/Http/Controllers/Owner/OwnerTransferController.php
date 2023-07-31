@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\Lesson;
+use App\Models\Schedule;
 
 class OwnerTransferController extends Controller
 {
@@ -21,7 +23,12 @@ class OwnerTransferController extends Controller
      */
     public function create()
     {
-        //
+        $lessons = Lesson::with('schedule', 'schedule.time', 'teacher', 'student', 'subject')->get();
+        $schedules = Schedule::with('time')->get();
+        return Inertia::render('Owner/Transfer/Create', [
+            'lessons' => $lessons,
+            'schedules' => $schedules,
+        ]);
     }
 
     /**
@@ -29,7 +36,7 @@ class OwnerTransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Inertia::render('Owner/Transfer/Index');
     }
 
     /**

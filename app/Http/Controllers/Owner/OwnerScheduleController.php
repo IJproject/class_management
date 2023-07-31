@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\Time;
+use App\Models\Schedule;
 
 class OwnerScheduleController extends Controller
 {
@@ -21,7 +23,10 @@ class OwnerScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $times = Time::get();
+        return Inertia::render('Owner/Schedule/Create', [
+            'times' => $times,
+        ]);
     }
 
     /**
@@ -29,7 +34,18 @@ class OwnerScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->input('start') !== null) {
+            $time = new Time;
+            $time->start = $request->input('start');
+            $time->finish = $request->input('finish');
+            $time->save();
+    
+        }
+
+        $schedule = new Schedule;
+        if($request->input(''))
+        
+        return Inertia::render('Owner/Schedule/Index');
     }
 
     /**
@@ -45,7 +61,7 @@ class OwnerScheduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return Inertia::render('Owner/Schedule/Index');
     }
 
     /**

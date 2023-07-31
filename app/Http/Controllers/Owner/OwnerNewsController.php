@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\News;
+use App\Models\Target;
 
 class OwnerNewsController extends Controller
 {
@@ -13,7 +15,10 @@ class OwnerNewsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Owner/News/Index');
+        $news = News::with('target')->get();
+        return Inertia::render('Owner/News/Index', [
+            "news" => $news
+        ]);
     }
 
     /**
@@ -21,7 +26,10 @@ class OwnerNewsController extends Controller
      */
     public function create()
     {
-        //
+        $target = Target::get();
+        return Inertia::render('Owner/News/Create', [
+            "target"  => $target,
+        ]);
     }
 
     /**
@@ -29,7 +37,17 @@ class OwnerNewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = new News;
+        $news->title = $request->input('title');
+        $news->content = $request->input('content');
+        $news->target_id = $request->input('target.id');
+        
+        $news->save();
+
+        $news = News::with('target')->get();
+        return Inertia::render('Owner/News/Index', [
+            "news" => $news
+        ]);
     }
 
     /**
@@ -37,7 +55,11 @@ class OwnerNewsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        $news = News::with('target')->findOrFail($id);
+        return Inertia::render('Owner/News/Show', [
+            "news" => $news,
+        ]);
     }
 
     /**
@@ -45,7 +67,12 @@ class OwnerNewsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = News::with('target')->findOrFail($id);
+        $target = Target::get();
+        return Inertia::render('Owner/News/Edit', [
+            "news" => $news,
+            "target" => $target,
+        ]);
     }
 
     /**
@@ -53,7 +80,17 @@ class OwnerNewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $news = News::with('target')->findOrFail($id);
+        $news->title = $request->input('title');
+        $news->content = $request->input('content');
+        $news->target_id = $request->input('target.id');
+
+        $news->update();
+        
+        $allNews = News::with('target')->get();
+        return Inertia::render('Owner/News/Index', [
+            "news" => $allNews
+        ]);
     }
 
     /**

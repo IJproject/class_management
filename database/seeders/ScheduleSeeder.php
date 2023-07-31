@@ -20,8 +20,8 @@ class ScheduleSeeder extends Seeder
                 'time_id' => 1,
             ],
             [
-                'date' => '2023-07-11',
-                'time_id' => 2,
+                'date' => '2023-07-10',
+                'time_id' => 1,
             ],
             [
                 'date' => '2023-07-12',

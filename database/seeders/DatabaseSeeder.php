@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             TimeSeeder::class,
             ScheduleSeeder::class,
             LessonSeeder::class,
+            TargetSeeder::class,
+            NewsSeeder::class,
         ]);
     }
 }
