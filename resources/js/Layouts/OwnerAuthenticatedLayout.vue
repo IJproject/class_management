@@ -30,9 +30,6 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('owner.news.index')" :active="route().current('owner.news.index')">
                                     お知らせ
                                 </NavLink>
-                                <NavLink :href="route('owner.agreement.index')" :active="route().current('owner.agreement.index')">
-                                    承認
-                                </NavLink>
                                 <NavLink :href="route('owner.schedule.index')" :active="route().current('owner.schedule.index')">
                                     スケジュール管理
                                 </NavLink>
@@ -127,9 +124,6 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('owner.news.index')" :active="route().current('owner.news.index')">
                             お知らせ
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('owner.agreement.index')" :active="route().current('owner.agreement.index')">
-                            承認
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('owner.schedule.index')" :active="route().current('owner.schedule.index')">
                             スケジュール管理

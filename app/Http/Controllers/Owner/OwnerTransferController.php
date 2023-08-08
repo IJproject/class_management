@@ -5,69 +5,74 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\Teacher;
 use App\Models\Lesson;
 use App\Models\Schedule;
+use App\Models\Time;
 
 class OwnerTransferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return Inertia::render('Owner/Transfer/Index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $lessons = Lesson::with('schedule', 'schedule.time', 'teacher', 'student', 'subject')->get();
+        $times = Time::get();
+        $lessons = Lesson::with('schedule', 'schedule.time', 'teacher', 'student')->get();
         $schedules = Schedule::with('time')->get();
-        return Inertia::render('Owner/Transfer/Create', [
+        return Inertia::render('Owner/Transfer/Index', [
             'lessons' => $lessons,
             'schedules' => $schedules,
+            'times' => $times,
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function create()
+    {
+        
+    }
+
     public function store(Request $request)
     {
-        return Inertia::render('Owner/Transfer/Index');
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $lesson = Lesson::with('schedule', 'teacher')->findOrFail($id);
+        $times = Time::get();
+        $teachers = Teacher::get();
+        return Inertia::render('Owner/Transfer/Edit', [
+            "lesson" => $lesson,
+            "times" => $times,
+            "teachers" => $teachers
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $lesson = Lesson::with('schedule', 'schedule.time', "teacher")->findOrFail($id);
+
+        $lesson->schedule->date = $request->input('transferDate');
+        $lesson->schedule->time_id = $request->input('transferTime.id');
+        $lesson->teacher_id = $request->input('transferTeacher.id');
+        $lesson->update();
+
+        $times = Time::get();
+        $lessons = Lesson::with('schedule', 'schedule.time', 'teacher', 'student')->get();
+        $schedules = Schedule::with('time')->get();
+
+        return Inertia::render('Owner/Transfer/Index', [
+            'lessons' => $lessons,
+            'schedules' => $schedules,
+            'times' => $times,
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

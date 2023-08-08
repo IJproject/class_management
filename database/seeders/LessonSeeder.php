@@ -17,26 +17,26 @@ class LessonSeeder extends Seeder
         DB::table('lessons')->insert([
             [
                 'student_id' => 1,
-                'teacher_id' => 1,
+                'teacher_id' => 3,
                 'subject_id' => 1,
                 'type_id' => 1,
                 'schedule_id' => 1,
                 'memo' => 'これ持ってきてください',
             ],
             [
-                'student_id' => 1,
+                'student_id' => 2,
                 'teacher_id' => 2,
                 'subject_id' => 2,
                 'type_id' => 2,
-                'schedule_id' => 2,
+                'schedule_id' => 1,
                 'memo' => 'あれ持ってきてください',
             ],
             [
                 'student_id' => 1,
-                'teacher_id' => 3,
+                'teacher_id' => 2,
                 'subject_id' => 3,
                 'type_id' => 3,
-                'schedule_id' => 3,
+                'schedule_id' => 1,
                 'memo' => 'それ持ってきてください',
             ],
             [

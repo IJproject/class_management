@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
-use App\Models\Schedule;
 use App\Models\Time;
 
 class OwnerTopController extends Controller
@@ -16,11 +15,11 @@ class OwnerTopController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::with('time')->get();
         $lessons = Lesson::with(['teacher', 'student', 'subject', 'type', 'schedule', 'schedule.time'])->get();
+        $times = Time::get();
         return Inertia::render('Owner/Top/Index', [
             'lessons' => $lessons,
-            'schedules' => $schedules,
+            'times' => $times,
         ]);
     }
 

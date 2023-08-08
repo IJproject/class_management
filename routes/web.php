@@ -24,8 +24,6 @@ Route::prefix('owner')->name('owner.')->group(function() {
         Route::resource('/lesson', 'App\Http\Controllers\Owner\OwnerTopController')
         ->only(['index', 'show']);
 
-        Route::resource('/agreement', 'App\Http\Controllers\Owner\OwnerAgreementController');
-
         Route::resource('/news', 'App\Http\Controllers\Owner\OwnerNewsController');
 
         Route::resource('/permit', 'App\Http\Controllers\Owner\OwnerPermitController');
