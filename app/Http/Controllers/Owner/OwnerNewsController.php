@@ -98,6 +98,10 @@ class OwnerNewsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $news = News::findOrFail($id)->delete();
+        $allNews = News::with('target')->get();
+        return Inertia::render('Owner/News/Index', [
+            "news" => $allNews
+        ]);
     }
 }

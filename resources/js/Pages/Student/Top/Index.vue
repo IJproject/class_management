@@ -6,11 +6,6 @@ const props = defineProps({
     lessons: Object,
 })
 
-// const lessons = [
-//   { id: 1, schedule: '2023/10/1 12:00~13:30', type: '講習', subject: '国語', teacher: '岩田岩子' },
-//   { id: 2, schedule: '2023/10/1 14:00~15:30', type: '通常', subject: '数学', teacher: '岩田岩男' },
-//   { id: 3, schedule: '2023/10/1 16:00~17:30', type: '講習', subject: '英語', teacher: '岩田岩化' },
-// ]
 </script>
 
 <template>
@@ -38,7 +33,7 @@ const props = defineProps({
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{ lesson.schedule.date }}<br>{{ lesson.schedule.time.start }}〜{{ lesson.schedule.time.finish }}</td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.type.name }}</td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.subject.name }}</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.teacher.name }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.teacher.lastName }}&nbsp;{{ lesson.teacher.firstName }}</td>
                             <!-- <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                 <a href="#" class="text-indigo-600 hover:text-indigo-900"
                                     >Edit<span class="sr-only">, {{ lesson.id }}</span></a

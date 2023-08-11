@@ -30,10 +30,12 @@ const props = defineProps({
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         <tr v-for="lesson in lessons" :key="lesson.id" class="even:bg-gray-50">
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{ lesson.schedule_id }}</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.type_id }}</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.subject_id }}</td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.student_id }}</td>
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                {{ lesson.schedule.date }}&emsp;{{ lesson.schedule.time.start }}~{{ lesson.schedule.time.finish }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.type.name }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.subject.name }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ lesson.student.lastName }}&nbsp;{{ lesson.student.firstName }}</td>
                             <!-- <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                 <a href="#" class="text-indigo-600 hover:text-indigo-900"
                                     >Edit<span class="sr-only">, {{ lesson.id }}</span></a

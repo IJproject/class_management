@@ -84,7 +84,7 @@ const search = () => {
                     <Listbox v-model="selectedLesson">
                         <div class="relative mt-1">
                             <ListboxButton class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                                <span class="block truncate">生徒名：{{ selectedLesson.student.firstName }}{{ selectedLesson.student.lastName }}&emsp;講師名：{{ selectedLesson.teacher.firstName }}{{ selectedLesson.teacher.lastName }}</span>
+                                <span class="block truncate">生徒名：{{ selectedLesson.student.lastName }}{{ selectedLesson.student.firstName }}&emsp;講師名：{{ selectedLesson.teacher.lastName }}{{ selectedLesson.teacher.firstName }}</span>
                                 <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true"/>
                                 </span>
@@ -95,7 +95,7 @@ const search = () => {
                                     <ListboxOption v-slot="{ active, selected }" v-for="(lesson, index) in searchedLesson" :key="index" :value="lesson" as="template">
                                         <li :class="[ active ? 'bg-amber-100 text-amber-900' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-10 pr-4', ]">
                                             <span :class="[ selected ? 'font-medium' : 'font-normal', 'block truncate',]">
-                                                生徒名：{{ lesson.student.firstName }}{{ lesson.student.lastName }}&emsp;講師名：{{ lesson.teacher.firstName }}{{ lesson.teacher.lastName }}
+                                                生徒名：{{ lesson.student.lastName }}{{ lesson.student.firstName }}&emsp;講師名：{{ lesson.teacher.lastName }}{{ lesson.teacher.firstName }}
                                             </span>
                                             <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
                                                 <CheckIcon class="h-5 w-5" aria-hidden="true" />

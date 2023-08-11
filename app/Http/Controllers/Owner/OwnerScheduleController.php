@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Time;
+use App\Models\Timegroup;
 use App\Models\Schedule;
 
 class OwnerScheduleController extends Controller
@@ -24,8 +25,10 @@ class OwnerScheduleController extends Controller
     public function create()
     {
         $times = Time::get();
+        $timegroups = Timegroup::with('time')->get();
         return Inertia::render('Owner/Schedule/Create', [
             'times' => $times,
+            'timegroups' => $timegroups,
         ]);
     }
 
@@ -34,17 +37,21 @@ class OwnerScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->input('start') !== null) {
+        if($request->input('type') === 2) {
             $time = new Time;
             $time->start = $request->input('start');
             $time->finish = $request->input('finish');
             $time->save();
-    
         }
-
-        $schedule = new Schedule;
-        if($request->input(''))
-        
+        if($request->input('type') === 3) {
+            $base = Timegroup::latest('id')->first()->group;
+            foreach ($request->input('times') as $time) {
+                $newtime = new Timegroup;
+                $newtime->time_id = $time;
+                $newtime->group = $base+1;
+                $newtime->save();
+            }
+        }
         return Inertia::render('Owner/Schedule/Index');
     }
 

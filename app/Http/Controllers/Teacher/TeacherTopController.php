@@ -15,7 +15,7 @@ class TeacherTopController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::where('teacher_id', Auth::id())->get();
+        $lessons = Lesson::where('teacher_id', Auth::id())->with('student', 'subject', 'schedule', 'schedule.time', 'type')->get();
         return Inertia::render('Teacher/Top/Index', [
             'lessons' => $lessons,
         ]);

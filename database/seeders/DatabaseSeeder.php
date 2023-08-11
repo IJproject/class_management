@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             TypeSeeder::class,
             TimeSeeder::class,
+            TimegroupSeeder::class,
             ScheduleSeeder::class,
             LessonSeeder::class,
             TargetSeeder::class,

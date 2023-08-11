@@ -19,14 +19,9 @@ const props = defineProps({
                 <div class="flex justify-between">
                     <h3>{{ props.news.title }}</h3>
                     <p v-if="props.news.target.id == 1" class="text-red-600">{{ props.news.target.person }}</p>
-                    <p v-if="props.news.target.id == 2" class="text-blue-600">{{ props.news.target.person }}</p>
                     <p v-if="props.news.target.id == 3" class="text-green-600">{{ props.news.target.person }}</p>
                 </div>
                 <p>{{ props.news.content }}</p>
-                <div class="flex justify-end">
-                    <Link :href="route('owner.news.edit', props.news.id)" class="block mx-2 p-2 bg-gray-500 text-white">編集</Link>
-                    <Link :href="route('owner.news.destroy', props.news.id)" method="delete" class="block mx-2 p-2 bg-gray-500 text-white">削除</Link>
-                </div>
             </div>
         </div>
     </AuthenticatedLayout>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class TeacherNewsController extends Controller
 {
@@ -14,7 +15,10 @@ class TeacherNewsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Teacher/News/Index');
+        $news = News::whereIn('target_id', [1, 2])->with('target')->get();
+        return Inertia::render('Teacher/News/Index', [
+            'news' => $news,
+        ]);
         
     }
 
@@ -39,7 +43,10 @@ class TeacherNewsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $news = News::with('target')->findOrFail($id);
+        return Inertia::render('Teacher/News/Show', [
+            "news" => $news,
+        ]);
     }
 
     /**

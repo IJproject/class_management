@@ -7,37 +7,53 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
-class ScheduleSeeder extends Seeder
+class TimegroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('schedules')->insert([
+        DB::table('timegroups')->insert([
             [
-                'date' => '2023-07-10',
                 'time_id' => 1,
+                'group' => 1,
             ],
             [
-                'date' => '2023-07-10',
                 'time_id' => 2,
+                'group' => 1,
             ],
             [
-                'date' => '2023-07-12',
                 'time_id' => 3,
+                'group' => 1,
             ],
             [
-                'date' => '2023-07-13',
                 'time_id' => 4,
+                'group' => 1,
             ],
             [
-                'date' => '2023-07-14',
                 'time_id' => 5,
+                'group' => 1,
             ],
             [
-                'date' => '2023-07-15',
+                'time_id' => 2,
+                'group' => 2,
+            ],
+            [
+                'time_id' => 3,
+                'group' => 2,
+            ],
+            [
+                'time_id' => 4,
+                'group' => 2,
+            ],
+            [
+                'time_id' => 5,
+                'group' => 2,
+            ],
+            [
                 'time_id' => 6,
+                'group' => 2,
             ],
         ]);
     }
