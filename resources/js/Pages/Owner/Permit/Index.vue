@@ -16,7 +16,7 @@ const allNews = [
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">招待</h2>
         </template>
         <div class="space-y-10 text-center">
-            <div class="bg-white shadow-lg ">
+            <div class="bg-white shadow-lg">
                 <h2 class="mt-2 py-2 text-xl font-semibold">新しい講師の招待</h2>
                 <p class="text-xs text-gray-500 mb-4">メールアドレスが必要です</p>
                 <Link :href="route('owner.permit.show', 0)" class="inline-block mt-2 mb-4 py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-400">招待</Link>
